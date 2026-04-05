@@ -1,0 +1,28 @@
+# Habilitar reescritura de URLs
+RewriteEngine On
+RewriteBase /gallery/
+
+# Prevenir acceso directo a archivos PHP sensibles
+<FilesMatch "^(config|auth|file_manager)\.php$">
+    Require all denied
+</FilesMatch>
+
+# Redirigir todas las peticiones al index.php (excepto archivos/directorios existentes)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Proteger archivos sensibles
+<Files ~ "^\.ht">
+    Require all denied
+</Files>
+
+# Caché para assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+</IfModule>

@@ -1,0 +1,39 @@
+# Configuración para el subdominio static
+
+# Habilitar reescritura de URLs
+RewriteEngine On
+
+# Establecer la base del directorio
+RewriteBase /
+
+# Redirigir index.php y default.php a /gallery
+RewriteRule ^(index|default)\.php$ /gallery/login [R=301,L]
+
+# Si alguien accede a la raíz del subdominio, usar default.php
+DirectoryIndex default.php index.php
+
+# Proteger archivos sensibles
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Configuración de seguridad adicional
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Prevenir listado de directorios
+Options -Indexes
+
+# Configuración de caché
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+</IfModule>
