@@ -1,0 +1,19 @@
+.gitignore
+  s_9265aac08855f0::t_421b51e58e1074 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.0",
+  "base_commit_sha": "fa4b73944f61b272ef992b6c4958d64f2fc33e5f",
+  "prompts": {},
+  "sessions": {
+    "s_9265aac08855f0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "249cd0eb-3a5e-4ebd-98d1-194e5ec119bf",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "danielruiz_meli <danieljose.ruiz@mercadolibre.com.co>"
+    }
+  }
+}
